@@ -3,7 +3,7 @@
  * Conforming to Dialect / Solana Foundation Action Spec v2.
  */
 
-import { validateSolanaAddress, validateSlippageInvariant } from "./invariants.ts";
+import { validateSolanaAddress } from "./invariants.ts";
 import { CookieMindshareOracle } from "./cookie-oracle.ts";
 
 export interface ActionGetResponse {
