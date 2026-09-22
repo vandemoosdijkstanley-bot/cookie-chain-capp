@@ -1,7 +1,7 @@
 # 🍪 Cookie Chain Solana cApp: Autonomous AI Agent Mindshare Rebalancer
 
-[![CI](https://github.com/vandemoosdijkstanley-bot/cookie-chain-solana-capp/actions/workflows/ci.yml/badge.svg)](https://github.com/vandemoosdijkstanley-bot/cookie-chain-solana-capp/actions/workflows/ci.yml)
-[![Tests: 18/18 Passing](https://img.shields.io/badge/Tests-18%2F18%20Passing-brightgreen.svg)](https://github.com/vandemoosdijkstanley-bot/cookie-chain-solana-capp)
+[![CI](https://github.com/vandemoosdijkstanley-bot/cookie-chain-capp/actions/workflows/ci.yml/badge.svg)](https://github.com/vandemoosdijkstanley-bot/cookie-chain-capp/actions/workflows/ci.yml)
+[![Tests: 18/18 Passing](https://img.shields.io/badge/Tests-18%2F18%20Passing-brightgreen.svg)](https://github.com/vandemoosdijkstanley-bot/cookie-chain-capp)
 [![Runtime: Bun 1.4](https://img.shields.io/badge/Runtime-Bun%201.4-black.svg)](https://bun.sh)
 [![Solana Actions: Spec v2](https://img.shields.io/badge/Solana%20Actions-Spec%20v2-blueviolet.svg)](https://solana.com/docs/advanced/actions)
 [![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](LICENSE)
@@ -60,8 +60,8 @@ Result:
 
 ```bash
 # Clone repository
-git clone https://github.com/vandemoosdijkstanley-bot/cookie-chain-solana-capp.git
-cd cookie-chain-solana-capp
+git clone https://github.com/vandemoosdijkstanley-bot/cookie-chain-capp.git
+cd cookie-chain-capp
 
 # Install dependencies
 bun install
