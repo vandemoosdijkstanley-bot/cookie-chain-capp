@@ -14,34 +14,41 @@ concurrency:
   group: "pages"
   cancel-in-progress: true
 
+# Eliminate Node.js 20 deprecation notices by explicitly targeting Node.js 24 runtime
+env:
+  FORCE_JAVASCRIPT_ACTIONS_TO_NODE24: "true"
+
 jobs:
   build-and-deploy:
     environment:
       name: github-pages
       url: ${{ steps.deployment.outputs.page_url }}
-    runs-on: ubuntu-latest
+    # Pin explicitly to Ubuntu 24.04 LTS to prevent ubuntu-latest migration notices
+    runs-on: ubuntu-24.04
     steps:
-      - name: Checkout
+      - name: Checkout Repository
         uses: actions/checkout@v4
+        with:
+          fetch-depth: 1
 
-      - name: Setup Bun
+      - name: Setup Bun Runtime
         uses: oven-sh/setup-bun@v2
         with:
           bun-version: latest
 
-      - name: Install dependencies
+      - name: Install Dependencies
         run: bun install --frozen-lockfile
 
-      - name: Run Invariant Tests
+      - name: Execute Formal Invariant Tests
         run: bun test
 
-      - name: Build Application
+      - name: Build Production Bundle
         run: bun run build
 
-      - name: Setup Pages
+      - name: Configure GitHub Pages
         uses: actions/configure-pages@v5
 
-      - name: Upload artifact
+      - name: Upload Pages Artifact
         uses: actions/upload-pages-artifact@v3
         with:
           path: './dist'
