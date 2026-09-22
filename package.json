@@ -1,30 +1,18 @@
 {
-  "name": "cookie-chain-capp",
-  "private": true,
+  "name": "cookie-chain-solana-capp",
   "version": "1.0.0",
+  "description": "Cookie Chain Solana cApp & Blink: Autonomous AI Agent Mindshare Rebalancer",
+  "main": "src/index.ts",
   "type": "module",
   "scripts": {
-    "dev": "vite",
-    "build": "tsc && vite build",
-    "preview": "vite preview",
+    "build": "bun build src/index.ts --outdir dist",
     "test": "bun test",
-    "typecheck": "tsc --noEmit"
+    "start": "bun src/index.ts"
   },
-  "dependencies": {
-    "@solana/web3.js": "^1.98.0",
-    "clsx": "^2.1.1",
-    "lucide-react": "^0.475.0",
-    "react": "^19.0.0",
-    "react-dom": "^19.0.0"
-  },
+  "keywords": ["solana", "actions", "blinks", "cookie-chain", "capp", "defi", "ai-agents"],
+  "author": "vandemoosdijkstanley-bot",
+  "license": "MIT",
   "devDependencies": {
-    "@tailwindcss/vite": "^4.3.3",
-    "@types/bun": "^1.4.2",
-    "@types/react": "^19.0.10",
-    "@types/react-dom": "^19.0.4",
-    "@vitejs/plugin-react": "^4.3.4",
-    "tailwindcss": "^4.3.3",
-    "typescript": "^5.7.3",
-    "vite": "^6.2.0"
+    "@types/bun": "latest"
   }
 }
