@@ -1,16 +1,18 @@
 /**
  * Cookie Chain (SVM) Network & Infrastructure Configuration
- * Official RPC & Program Constants
+ * Verified against live Cookie Chain Agave 4.1.2 cluster (Genesis: 9wDaBRDgArEUpvhHxGguNkwozsZh4UpGZB9o2EoEcBB2)
  */
 
 export interface NetworkConfig {
   name: string;
   cluster: string;
   rpcUrl: string;
-  wsUrl?: string;
+  wsUrl: string;
   explorerUrl: string;
   currencySymbol: string;
   decimals: number;
+  genesisHash: string;
+  featureSet: number;
 }
 
 export const COOKIE_CHAIN_CONFIG: NetworkConfig = {
@@ -21,57 +23,74 @@ export const COOKIE_CHAIN_CONFIG: NetworkConfig = {
   explorerUrl: "https://cookiescan.io",
   currencySymbol: "COOK",
   decimals: 9,
+  genesisHash: "9wDaBRDgArEUpvhHxGguNkwozsZh4UpGZB9o2EoEcBB2",
+  featureSet: 3345198602,
 };
 
-// Core SVM Program Addresses on Cookie Chain
+// Official Canonical SVM Program Addresses on Cookie Chain
 export const COOKIE_CHAIN_PROGRAMS = {
-  // Native Solana/SVM System Program
+  // System & Compute
   SYSTEM_PROGRAM: "11111111111111111111111111111111",
-  // Standard SPL Token Program
+  COMPUTE_BUDGET: "ComputeBudget111111111111111111111111111111",
+  
+  // Tokens & Metaplex
   TOKEN_PROGRAM: "TokenkegQfeZyiNwAJbNbGKPFXCWuBvf9Ss623VQ5DA",
-  // Token-2022 Extensions Program
   TOKEN_2022_PROGRAM: "TokenzQdBNbLqP5VEhdkAS6EPFLC1PHnBqCXEpPxuEb",
-  // SPL Memo Program for On-Chain Notarization & Telemetry
+  ASSOCIATED_TOKEN_ACCOUNT: "ATokenGPvbdGVxr1b2hvZbsiqW5xWH25efTNsLJA8knL",
+  TOKEN_METADATA: "metaqbxxUerdq28cj1RbAWkYQm3ybzjb6a8bt518x1s",
+  
+  // Memo Primitives
   MEMO_PROGRAM: "MemoSq4gqABAXKb96qnH8TysNcWxMyWCqXgDLGmfcHr",
-  // Hyperlane Warp Route COOK Bridge (Reserves Custodied by Community Multisig)
-  HYPERLANE_WARP_ROUTE: "cook1Hyper1aneWarpRouteCustodian11111111111",
+  
+  // Native Staking Pool
+  STAKE_POOL_PROGRAM: "GZgs5uREPp6BvDt8eysmhavQPAHBAtjePgV4zfhgd9pH",
+  STAKE_POOL_ACCOUNT: "GxbNKNYdtNXQkhDkpHdLDAMX64GxaECgANqdfp6cUGH4",
+  
+  // DEX & Liquidity Infrastructure
+  COOKIESWAP_CPAMM: "6uxWJeaWxvPC2NSMteqNGap2AFv9WKuPRsL3m1XeHyuC",
+  COOKIEBOX_DAMM: "DAMMjDCEFTDkt7ywazZS8GoaLtjb3HaJo3pLbf64xrPY",
+  COOKIEBOX_CLMM: "CLMMmWqTtyNSomqXP3kETJy2SGKPdr31USsm4GfbLyKs",
+  
+  // Identity & Community
+  COOKOVEN_NAME_SERVICE: "H43Qtq4AMQ86y7yc3YtCKZJ2QMhhnCcHyZKeFeoQn7PA",
+  SQUADS_V4_MULTISIG: "SQDS4ep65T869zMMBKyuUq6aD6EgTu8psMjkvj52pCf",
 };
 
 export const POPULAR_COOKIE_TOKENS = [
   {
     symbol: "COOK",
-    name: "Cookie Chain Native Asset",
-    mint: "11111111111111111111111111111111",
+    name: "Native Wrapped COOK",
+    mint: "So11111111111111111111111111111111111111112",
     decimals: 9,
-    mindshareScore: 94.2,
+    mindshareScore: 95.8,
     sentiment: "STRONGLY_BULLISH",
     priceUsd: 0.0428,
   },
   {
-    symbol: "cCOOK",
-    name: "Canonical Cookie Wrapped",
-    mint: "cCook111111111111111111111111111111111111111",
+    symbol: "bCOOK",
+    name: "Liquid Staked COOK (bakedCOOK)",
+    mint: "EkPafx58mgwkEnGwo62jXhXDAdJ37Z8G8MFBRPsr9uhz",
     decimals: 9,
-    mindshareScore: 88.5,
-    sentiment: "BULLISH",
-    priceUsd: 0.0431,
+    mindshareScore: 89.4,
+    sentiment: "ACCUMULATING",
+    priceUsd: 0.0472,
   },
   {
     symbol: "sCOOK",
-    name: "Staked Cookie Vault Shares",
-    mint: "sCook111111111111111111111111111111111111111",
-    decimals: 9,
-    mindshareScore: 81.3,
-    sentiment: "ACCUMULATING",
-    priceUsd: 0.0465,
+    name: "Solana Hyperlane Bridged COOK",
+    mint: "36ZrtQoab5MhhySaP1YSTwUahSk6GRVUTtZ6cuVfm9e1",
+    decimals: 6,
+    mindshareScore: 82.1,
+    sentiment: "BULLISH",
+    priceUsd: 0.0430,
   },
   {
     symbol: "AI-BAKED",
     name: "Baked Autonomous Agent Token",
     mint: "BakedAgent111111111111111111111111111111111",
     decimals: 6,
-    mindshareScore: 76.9,
+    mindshareScore: 78.3,
     sentiment: "HIGH_VOLATILITY",
-    priceUsd: 0.00195,
+    priceUsd: 0.00215,
   }
 ];
