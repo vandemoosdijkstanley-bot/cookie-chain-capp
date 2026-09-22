@@ -59,26 +59,12 @@ export const TransactionHub: React.FC<TransactionHubProps> = ({
       }
 
       setTxStatus({ state: 'SIGNING' });
-      let signedTx;
-      try {
-        signedTx = await signTransaction(tx);
-      } catch (err: any) {
-        // Fallback demo signed simulation if running without Nightly extension injected
-        console.warn('Nightly extension not available, generating demo SVM confirmation hash:', err);
-        const demoSig = '5' + Array.from({ length: 87 }, () => Math.floor(Math.random() * 36).toString(36)).join('');
-        await new Promise((r) => setTimeout(r, 1200));
-        setTxStatus({
-          state: 'SUCCESS',
-          signature: demoSig,
-        });
-        setIsProcessing(false);
-        onSuccess();
-        return;
-      }
+      const signedTx = await signTransaction(tx);
 
       setTxStatus({ state: 'CONFIRMING' });
       const rawWire = signedTx.serialize();
       const signature = await cookieClient.sendAndConfirmRawTx(rawWire);
+
 
       setTxStatus({
         state: 'SUCCESS',

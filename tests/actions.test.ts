@@ -6,6 +6,8 @@ import {
 } from "../src/invariants.ts";
 import { CookieMindshareOracle } from "../src/cookie-oracle.ts";
 import { CookieActionsHandler } from "../src/actions.ts";
+import { Transaction } from "@solana/web3.js";
+
 
 describe("Cookie Chain Solana cApp & Blink Test Suite", () => {
   const validSolanaAddress = "7xKXtg2CW87d97TXJSDpbD5jBkheTqA83TZRuJosgAsU";
@@ -93,7 +95,12 @@ describe("Cookie Chain Solana cApp & Blink Test Suite", () => {
 
       expect(postRes.transaction).toBeDefined();
       expect(postRes.transaction.length).toBeGreaterThan(20);
-      expect(postRes.message).toContain("0.5 SOL");
+      expect(postRes.message).toContain("0.5 COOK");
+
+      // Verify deserializability as a valid Solana Transaction wire
+      const tx = Transaction.from(Buffer.from(postRes.transaction, "base64"));
+      expect(tx.feePayer?.toBase58()).toBe(validSolanaAddress);
+      expect(tx.instructions.length).toBe(1);
     });
 
     it("should throw for invalid account in POST request", () => {
@@ -102,3 +109,4 @@ describe("Cookie Chain Solana cApp & Blink Test Suite", () => {
     });
   });
 });
+
